@@ -161,4 +161,3 @@ mv roles/ playbooks/                   # Move roles inside playbooks directory
 
 ---
 
-*Generated from shell history — invalid/typo commands excluded (e.g., `clera`, `clea`, `sl`, `sudo apt get docker`, `ansible-vault encrpt`).*
