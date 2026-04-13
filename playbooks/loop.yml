@@ -1,0 +1,19 @@
+- name: Install package on ubuntu using vars, loops
+  hosts: ubuntu 
+  become: yes
+
+  vars:
+    package_list:
+      - unzip
+      - curl
+      - wget
+      - wget
+      - net-tools
+    
+  tasks:
+    - name: Install
+      apt:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ package_list }}"
+

@@ -1,0 +1,9 @@
+- name: Print the custom variable
+  hosts: server
+
+  vars:
+    myname: jarvis
+  tasks:
+    - name: greet the user
+      debug:
+        msg: "Hello {{ myname }}"

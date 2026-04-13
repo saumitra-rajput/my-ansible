@@ -1,0 +1,6 @@
+- name: Show date
+  hosts: server
+
+  tasks:
+    - name: show date
+      command: date

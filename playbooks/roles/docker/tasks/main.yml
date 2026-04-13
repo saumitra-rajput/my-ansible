@@ -1,0 +1,30 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for role/docker
+
+- name: Update system
+  apt:
+    name: "*"
+    state: latest
+
+- name: Install docker.io
+  apt:
+    name: docker.io
+    state: latest
+
+- name: Add user to dockergroup
+  user:
+    name: "{{ item }}" 
+    groups: docker
+    append: true
+      # sudo usermod -aG docker ubuntu here we use append  
+  loop: "{{ docker_users }}"
+
+
+- name: regsiter the docker version to the variable
+  command: docker --version
+  register: docker_version
+
+- name: show Docker version  
+  debug:
+    msg: "{{ docker_version }}"

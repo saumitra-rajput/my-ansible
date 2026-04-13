@@ -1,0 +1,24 @@
+- name: Check if Package Installed
+  hosts: server
+  become: yes # to get the sudo access
+  gather_facts: true # get all the info about the server ex which dnf, or OS
+
+  tasks:
+    - name: Update the server for the amazon RedHat linux
+      dnf:
+        name: "*"
+        state: latest
+      when: ansible_facts["os_family"] == "RedHat" and ansible_facts["distribution"] == "Amazon"
+
+    - name: Update the server for the ubuntu debian linux
+      apt:
+        name: "*"
+        state: latest 
+      when: ansible_facts["os_family"] == "Debian" and ansible_facts["distribution"] == "Ubuntu"
+
+    # if os is ubuntu install docker.io
+    - name: Install docker
+      apt:
+        name: docker.io
+        state: present
+      when: ansible_facts["os_family"] == "Debian" and ansible_facts["distribution"] == "Ubuntu"

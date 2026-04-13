@@ -1,0 +1,24 @@
+- name: Setup nginx with the custom file
+  hosts: server
+  become: yes
+
+  tasks:
+    - name: Install nginx
+      apt:
+        name: nginx
+        state: present
+
+    - name: copy the custom html file
+      copy:
+        src: index.html
+        dest: /var/www/html
+
+    - name: restart the nginx
+      service:
+        name: nginx
+        state: reloaded
+
+    - name: enable nginx
+      systemd_service:
+        name: nginx
+        enabled: true

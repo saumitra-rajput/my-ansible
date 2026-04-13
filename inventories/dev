@@ -1,0 +1,8 @@
+[dev]
+ubuntu ansible_host=3.15.169.62
+ubuntu ansible_user=ubuntu
+
+[dev:vars]
+ansible_python_interpreter=/usr/bin/python3
+ansible_ssh_private_key_file=~/.ssh/ansible
+ansible_host_key_checking=false
