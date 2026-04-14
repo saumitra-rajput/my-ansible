@@ -1,0 +1,17 @@
+
+- name: Update the machine
+  apt:
+    name: "*"
+    state: latest
+  become: yes
+
+- name: Install nginx Debian/Ubuntu
+  apt:
+    name: nginx
+    state: present
+  become: yes
+
+- name: Copy the custom html to server
+  copy:
+    src: index.html # Ansible automatically looks inside:roles/nginx/files/
+    dest: /var/www/html

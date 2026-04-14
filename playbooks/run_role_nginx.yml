@@ -1,0 +1,7 @@
+# this file will use the roles nginx and deploy the nginx on the server
+
+- name: Run roles/nginx
+  hosts: all
+  become: yes
+  roles:
+    - role: ../roles/nginx

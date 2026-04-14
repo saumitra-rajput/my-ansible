@@ -1,0 +1,9 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for roles/nginx
+
+- name: Include OS-specific nginx installation
+  include_tasks: "install_{{ ansible_distribution | lower }}.yml"
+
+- name: Print nginx version
+  command: nginx -v

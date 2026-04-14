@@ -1,0 +1,23 @@
+- name: Update the machine
+  dnf:
+    name: "*"
+    state: latest
+  become: yes
+
+- name: Install nginx RedHat/Amazon
+  dnf:
+    name: nginx
+    state: present
+  become: yes
+
+- name: restart nginx for safer side
+  service: 
+    name: nginx
+    state: restarted
+    enabled: yes
+  become: yes
+
+- name: Copy the custom html to server
+  copy:
+    src: index.html # Ansible automatically looks inside:roles/nginx/files/
+    dest: /usr/share/nginx/html/index.html
